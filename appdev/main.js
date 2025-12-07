@@ -2,7 +2,7 @@ console.log("HelloWorld");
 
 
 function getData(){
-    fetch("https://api.allorigins.win/raw?url=https://www.cc.puv.fi/~e2402595/record.txt")
+    fetch("https://corsproxy.io/?http://www.cc.puv.fi/~e2402595/record.txt")
   .then(x => x.text())
   .then(dispData);
 
