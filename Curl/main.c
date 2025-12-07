@@ -5,6 +5,7 @@
 
 int main()
 {
+    srand(time(NULL));
     rock r;
     printf("Application Developers Rock!\n");
     printf("Enter rocker's name: ");
