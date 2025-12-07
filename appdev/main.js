@@ -35,39 +35,35 @@ function dispData(d){
 
 
 function buildChart() {
+    // Create labels from dates
+    labels = list.map(item => {
+        const date = new Date(item.datetime);
+        return date.toLocaleString();
+    });
     
-
-    // Format data for Chart.js time scale (each point needs x and y)
-    minDataPoints = list.map(item => ({
-        x: item.datetime,
-        y: item.min
-    }));
-    maxDataPoints = list.map(item => ({
-        x: item.datetime,
-        y: item.max
-    }));
+    minDataPoints = list.map(item => item.min);
+    maxDataPoints = list.map(item => item.max);
 
     ctx = document.getElementById('myChart').getContext('2d');
 
     new Chart(ctx, {
-        type: 'line',
+        type: "bar",
         data: {
+            labels: labels,
             datasets: [
                 {
                     label: 'Min',
                     data: minDataPoints,
                     borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 2,
-                    fill: false
+                    backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                    borderWidth: 2
                 },
                 {
                     label: 'Max',
                     data: maxDataPoints,
                     borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderWidth: 2,
-                    fill: false
+                    backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                    borderWidth: 2
                 }
             ]
         },
@@ -75,11 +71,6 @@ function buildChart() {
             responsive: true,
             scales: {
                 x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
-                        tooltipFormat: 'yyyy-MM-dd HH:mm:ss'
-                    },
                     title: {
                         display: true,
                         text: 'Date/Time'
